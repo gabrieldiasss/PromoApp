@@ -13,7 +13,7 @@ function PromotionCard({ promotion }) {
 
                         <div className="card-body" >
 
-                            <img src={promotion.imageUrl} />
+                            <img src={promotion.url} />
 
                             <div className="card-infos" >
                                 <h1>{promotion.title}</h1>
@@ -29,7 +29,7 @@ function PromotionCard({ promotion }) {
                                             { promotion.comments.length === 0 ? '' : promotion.comments.length > 1 ? ' Comentários' : ' Comentário' }
                                         </p>
                                         
-                                        <a href={promotion.url} target="_blank" >Ir para o site</a>
+                                        <a href={promotion.link} target="_blank" >Ir para o site</a>
                                     </div>
                                     
 

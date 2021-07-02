@@ -1,14 +1,16 @@
 import React from 'react'
 
-import { useParams } from 'react-router-dom'
+import FormPromotion from '../../components/Form/Form'
 
-function Form () {
 
-    const { id } = useParams()
+
+function PageForm () {
 
     return(
-        <h1>helo</h1>
+        <div className="page-form" >
+            <FormPromotion />
+        </div>
     )
 }
 
-export default Form
+export default PageForm

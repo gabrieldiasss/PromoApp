@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import List from '../List/List'
 
 import axios from 'axios' 
+import { Link } from 'react-router-dom'
 
 import './search.scss'
 
 function PromotionSearch() { 
-   
 
     const [ promotions, setPromotions ] = useState([])
     const [ search, setSearch ] = useState('')
@@ -33,7 +33,9 @@ function PromotionSearch() {
             <header>
                 <div>
                     <h1>PromoShow</h1>
-                    <button>Nova publicação</button>
+                    <Link to="/create" >
+                        <button>Nova publicação</button>
+                    </Link>
 
                 </div>
 
@@ -53,7 +55,6 @@ function PromotionSearch() {
             
         </div>
         
-
     )
 }
 
