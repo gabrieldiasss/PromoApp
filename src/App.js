@@ -2,7 +2,7 @@ import React from 'react'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Search from './pages/PromotionSearch/Search'
+import Search from './pages/PageSearch/Search'
 import Form from './pages/Form/Form'
 
 function App() {
