@@ -13,7 +13,6 @@ function App() {
 			<Switch>
 				<Route exact path="/" component={Search} />
 				<Route path="/create" component={Form} />
-				<Route path="/edit/:id" component={Form} />
 			</Switch>
 		</Router>
 		

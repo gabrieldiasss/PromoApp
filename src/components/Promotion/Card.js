@@ -25,8 +25,8 @@ function PromotionCard({ promotion }) {
                                     { promotion.comments.length > 0 && <span>{promotion.comments[0].comment}</span> }
 
                                     <div>
-                                        <p>{promotion.comments.length}
-                                            { promotion.comments.length > 1 ? ' Comentários' : ' Comentário'}
+                                        <p>{ promotion.comments.length === 0 ? <span>Não há comentários</span> : promotion.comments.length }
+                                            { promotion.comments.length === 0 ? '' : promotion.comments.length > 1 ? ' Comentários' : ' Comentário' }
                                         </p>
                                         
                                         <a href={promotion.url} target="_blank" >Ir para o site</a>

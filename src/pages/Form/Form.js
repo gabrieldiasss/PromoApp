@@ -7,7 +7,7 @@ function Form () {
     const { id } = useParams()
 
     return(
-        <h1>Form {id}</h1>
+        <h1>helo</h1>
     )
 }
 
