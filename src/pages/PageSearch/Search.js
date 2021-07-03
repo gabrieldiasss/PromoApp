@@ -7,7 +7,7 @@ function Search() {
 
 	return ( 
 		<div className="page-search" >
-			<PromotionSearch />
+			<PromotionSearch  />
 		</div>
 		
 	)

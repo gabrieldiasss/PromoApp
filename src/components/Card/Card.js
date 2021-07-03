@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './card.scss'
 
@@ -30,16 +31,21 @@ function PromotionCard({ promotion }) {
                                         </p>
                                         
                                         <a href={promotion.link} target="_blank" >Ir para o site</a>
+
+                                        <div>
+                                            <Link to={{ pathname: `/edit/${promotion.id}` }} >
+                                                <button>Editar</button>
+                                            </Link>
+                                            
+                                        </div>
                                     </div>
                                     
-
                                 </div>
 
                             </div>
 
                         </div>
                         
-
                     </div>
 
             </main>
