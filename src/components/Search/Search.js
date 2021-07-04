@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from 'react' 
+import React, { useEffect, useState } from 'react' 
 import List from '../List/List'
-
-import axios from 'axios' 
+import useApi from '../../hooks/useApi'
 import { Link } from 'react-router-dom'
 
 import './search.scss'
 
 function PromotionSearch() { 
 
-    const [ promotions, setPromotions ] = useState([])
-    const [ search, setSearch ] = useState('')
+    const [search, setSearch] = useState('')
 
-	useEffect(() => {
+    const [ load, loadInfo ] = useApi({
+        url: "/promotions",
+        method: 'get',
+        params: {
+            _embed: "comments",
+            _order: "desc",
+            _sort: "id",
+            title_like: search || undefined
+        },
+       
+    })
 
-        const params = {}
+    console.log(loadInfo.data)
 
-        if(search) {
-            params.title_like = search
-        }
-
-		axios.get("http://localhost:5000/promotions?_embed=comments&_order=desc&_sort=id", { params } )
-		.then((response) => {
-			setPromotions(response.data)
-		})
-
+    useEffect(() => {
+        load()
 	}, [search])
 
     return(
@@ -31,12 +32,11 @@ function PromotionSearch() {
         <div className="component-search" >
 
             <header>
-                <div>
+                <div className="content" >
                     <h1>PromoShow</h1>
                     <Link to="/create" >
                         <button>Nova publicação</button>
                     </Link>
-
                 </div>
 
             </header>
@@ -50,7 +50,7 @@ function PromotionSearch() {
             </div>
 
             <div>
-                <List promotions={promotions} />
+                <List promotions={loadInfo.data} loading={loadInfo.loading} error={loadInfo.error} />
             </div>
             
         </div>

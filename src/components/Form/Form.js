@@ -2,14 +2,13 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
-
 import './form.scss'
 
 function Form () {
 
     let history = useHistory()
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit } = useForm()
 
     const onSubmit = values => axios.post("http://localhost:5000/promotions", values)
     .then(() => {
