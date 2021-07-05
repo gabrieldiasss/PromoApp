@@ -2,24 +2,18 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
-import useApi from '../../hooks/useApi'
 
 function Edit ({ id }) {
 
     const { register, handleSubmit, reset } = useForm()
 
-    const [ load ] = useApi({
-        url: `/promotions/${id}`,
-        method: 'get',
-        onCompleted: (response) => {
-            reset(response.data)
-        }
-    })
-
     let history = useHistory()
 
     useEffect(() => {
-        load()
+        axios.get(`http://localhost:5000/promotions/${id}`)
+        .then((response) => {
+            reset(response.data)
+        })
     }, [])
 
     const onSubmit = values => axios.put(`http://localhost:5000/promotions/${id}`, values)

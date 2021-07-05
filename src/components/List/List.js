@@ -5,18 +5,17 @@ import './list.scss'
 
 function List({ promotions, loading, error }) {
 
-    if(error) {
-        return <h3>Não é possível listar os produtos</h3>
+    if(loading ) {
+        return <h3>Carregando...</h3>
     }
 
-    if(loading || !promotions ) {
-        return <h3>Carregando...</h3>
+    if(error) {
+        return <h3>{error}</h3>
     }
 
     if(promotions.length === 0) {
         return <h3>Nenhum resultado encontrado</h3>
     }
-
 
     return (
         <div>

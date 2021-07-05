@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -13,7 +15,7 @@ function PromotionCard({ promotion }) {
                     <div className="card" >
 
                         <div className="card-body" >
-
+                            
                             <img src={promotion.url} />
 
                             <div className="card-infos" >
@@ -26,8 +28,8 @@ function PromotionCard({ promotion }) {
                                     { promotion.comments.length > 0 && <span>{promotion.comments[0].comment}</span> }
 
                                     <div>
-                                        <p>{ promotion.comments.length === 0 ? <span>Não há comentários</span> : promotion.comments.length }
-                                            { promotion.comments.length === 0 ? '' : promotion.comments.length > 1 ? ' Comentários' : ' Comentário' }
+                                        <p>{ promotion.comments.length == 0 ? <span>Não há comentários</span> : promotion.comments.length }
+                                            { promotion.comments.length == 0 ? '' : promotion.comments.length > 1 ? ' Comentários' : ' Comentário' }
                                         </p>
                                         
                                         <a href={promotion.link} target="_blank" >Ir para o site</a>

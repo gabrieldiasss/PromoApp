@@ -1,33 +1,48 @@
-import React, { useEffect, useState } from 'react' 
+import React, { useEffect, useRef, useState } from 'react' 
 import List from '../List/List'
-import useApi from '../../hooks/useApi'
 import { Link } from 'react-router-dom'
+
+import axios from 'axios'
 
 import './search.scss'
 
 function PromotionSearch() { 
 
     const [search, setSearch] = useState('')
+    const [ promotions, setPromotions ] = useState([])
+    const [ loading, setLoading ] = useState(true)
+    const [error, setError] = useState(false)
+    const timeoutRef = useRef(null)
 
-    const [ load, loadInfo ] = useApi({
-        url: "/promotions",
-        method: 'get',
-        params: {
-            _embed: "comments",
-            _order: "desc",
-            _sort: "id",
-            title_like: search || undefined
-        },
-       
-    })
+        useEffect(() => {
 
-    console.log(loadInfo.data)
+            window.clearTimeout(timeoutRef.current)
 
-    useEffect(() => {
-        load()
-	}, [search])
+            timeoutRef.current = setTimeout(() => {
 
-    return(
+                let params = {}
+
+                if(search) {
+                    params.title_like = search
+                }
+    
+                    axios.get("http://localhost:5000/promotions?_embed=comments&_order=desc&_sort=id", { params })
+                    .then((response) => {
+                        setPromotions(response.data)
+                        setLoading(false)
+                    })
+    
+                    .catch((err) => {
+                        setError("Erro ao listar produtos")
+                        setLoading(false)
+    
+                    })
+
+            }, 300) 
+
+	    }, [search])
+
+    return (
 
         <div className="component-search" >
 
@@ -45,12 +60,12 @@ function PromotionSearch() {
                 <input 
                     type="search"
                     value={search}
-                    onChange={(e) => setSearch(e.target.value) }
+                    onChange={(e) => setSearch(e.target.value)}
                 />
             </div>
 
             <div>
-                <List promotions={loadInfo.data} loading={loadInfo.loading} error={loadInfo.error} />
+                <List promotions={promotions} loading={loading} error={error} />
             </div>
             
         </div>
