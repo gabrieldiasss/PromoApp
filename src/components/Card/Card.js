@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import './card.scss'
 
-function PromotionCard({ promotion }) {
+function PromotionCard({ promotion, onClickComments }) {
 
     return(
         <div className="page-card" >
@@ -28,9 +28,10 @@ function PromotionCard({ promotion }) {
                                     { promotion.comments.length > 0 && <span>{promotion.comments[0].comment}</span> }
 
                                     <div>
-                                        <p>{ promotion.comments.length == 0 ? <span>Não há comentários</span> : promotion.comments.length }
+                                        <button onClick={onClickComments} >
+                                            { promotion.comments.length == 0 ? <span>Não há comentários</span> : promotion.comments.length }
                                             { promotion.comments.length == 0 ? '' : promotion.comments.length > 1 ? ' Comentários' : ' Comentário' }
-                                        </p>
+                                        </button>
                                         
                                         <a href={promotion.link} target="_blank" >Ir para o site</a>
 
